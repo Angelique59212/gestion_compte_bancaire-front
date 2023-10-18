@@ -50,7 +50,28 @@
             <input type="submit" class="bg-blue-500 text-white p-2 rounded-md" value="Créer le compte">
         </form>
     </div>
+    <div>
+        <form action="" id="createAccount"  class="invisible" method="post">
+            <h1 class="text-xl font-bold text-center mb-4">Création du compte</h1>
+            <div class="mb-4">
+                <label for="accountType">Type de compte : </label>
+                <select name="accountType" id="accountType">
+                    <option value="courant">Courant</option>
+                    <option value="epargne">Epargne</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="currentAccountBalance">Solde :</label>
+                <input class="block w-full border-2 rounded-md p-2" type="text" placeholder="Solde"
+                       name="currentAccountBalance"
+                       id="currentAccountBalance">
+            </div>
+
+            <input type="submit" class="bg-blue-500 text-white p-2 rounded-md" value="Créer le compte">
+        </form>
+    </div>
 </div>
+<div id="infosAccount"></div>
 <footer class="bg-gray-800 text-white py-2">
     <div class="container text-white mx-auto flex justify-between items-center">
         <div class="text-lg font-bold">

@@ -1,6 +1,6 @@
 const createCustomer = document.getElementById("createCustomer");
 const responseDiv = document.getElementById("resultResponse");
-
+let idCustomer =0;
 if (createCustomer) {
     createCustomer.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -20,6 +20,7 @@ if (createCustomer) {
         })
             .then(response => response.json())
             .then(response => {
+                 idCustomer = response.id;
                 responseDiv.innerHTML = `<div class="card w-30">
                                             <p>Nom: ${response.name}</p>
                                             <p>Prénom: ${response.firstname}</p>
@@ -30,26 +31,14 @@ if (createCustomer) {
                                         </div>
                                         <div class="card w-30">
                                              <div id="responseAccount" class="w-1/3 p-8 border border-blue-800">
-                                             <h1 class="text-xl font-bold text-center mb-4">Création du client</h1>
-                                             <form action="" id="createAccount" method="post">
-                                                 <div class="mb-4">
-                                                     <label for="accountType">Type de compte : </label>
-                                                     <select name="accountType" id="accountType">
-                                                         <option value="courant">Courant</option>
-                                                         <option value="epargne">Epargne</option>
-                                                     </select>
-                                                 </div>
-                                                 <div class="mb-4">
-                                                     <label for="currentAccountBalance">Solde :</label>
-                                                     <input class="block w-full border-2 rounded-md p-2" type="text" placeholder="Solde" name="currentAccountBalance"
-                                                            id="currentAccountBalance">
-                                                 </div>
-                                                                               
-                                                 <input type="submit" class="bg-blue-500 text-white p-2 rounded-md" value="Créer le compte">
-                                             </form>
-                                        </div>
+                                        </div>    
                                         `;
+                createCustomer.classList.add('invisible');
+                createAccount.classList.remove('invisible');
             })
     });
 }
+
+
+
 
