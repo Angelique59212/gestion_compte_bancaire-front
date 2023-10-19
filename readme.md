@@ -13,6 +13,6 @@ La page doit afficher de manière claire les détails renvoyés par l'API après
 
 - _Création de comptes bancaires (courants et d'épargne) en utilisant des formulaires appropriés._
 - _Affichage des détails de compte après la création, y compris les informations du titulaire et le solde initial._
-- Simulation de transactions entre comptes avec la possibilité de spécifier les comptes source et cible ainsi que le montant de la transaction.
-- Affichage des détails mis à jour des comptes après chaque transaction effectuée.
+- _Simulation de transactions entre comptes avec la possibilité de spécifier les comptes source et cible ainsi que le montant de la transaction._
+- _Affichage des détails mis à jour des comptes après chaque transaction effectuée._
 - Prévoir une page de recherche pour la recherche par nom.
