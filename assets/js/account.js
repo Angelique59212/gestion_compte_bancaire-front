@@ -1,6 +1,6 @@
 const createAccount = document.getElementById("createAccount");
-const responseAccount = document.getElementById("responseAccount");
 const infosAccount = document.getElementById('infosAccount');
+const payment = document.getElementById('payment');
 
 if (createAccount) {
     createAccount.addEventListener("submit", (e) => {
@@ -22,11 +22,10 @@ if (createAccount) {
         })
             .then(response => response.json())
             .then(response => {
-                console.log(response);
-                infosAccount.innerHTML +=  `<div class="card w-30">
-                                                <p>Numéro de Compte: ${response.accountNumber}</p>
+                infosAccount.innerHTML +=  `<div class="max-w-sm p-6 m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-100 dark:border-gray-100"">
+                                                <p class="text-center font-medium">Numéro de Compte: ${response.accountNumber}</p>
                                                 <p>Type de compte: ${response.accountType}</p>
-                                                <p>Solde: ${response.currentAccountBalance}</p>
+                                                <p class="text-emerald-500" id="balance + ${response.id}">Solde: ${response.currentAccountBalance}</p>
                                                 <p>Découvert: ${response.overdraft}</p>
                                                 <p>Taux d'intérêt : ${response.interestRate}</p>
                                                 <p>Id: ${response.id}</p>
@@ -34,3 +33,32 @@ if (createAccount) {
             })
     });
 }
+
+if (payment) {
+    payment.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        fetch('http://localhost:8000/api/transactions/payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'idBankAccount': parseInt(document.getElementById('accountSource').value),
+                'idBankAccountCible': parseInt(document.getElementById('accountDest').value),
+                'amount': parseFloat(document.getElementById('amountAccount').value),
+            })
+        })
+            .then(response=>response.json())
+            .then(response => {
+                let calculTransfert = (parseFloat(document.getElementById('amountAccount').value) *2)
+                let calculTransfertDest = (parseFloat(response.newAmount) + calculTransfert)
+                console.log(calculTransfert)
+               document.getElementById(`balance + ${document.getElementById('accountSource').value}`).innerHTML = 'Solde:' +  response.newAmount
+               document.getElementById(`balance + ${document.getElementById('accountDest').value}`).innerHTML = 'Solde:' + calculTransfertDest
+
+            })
+    })
+}
+
+
